@@ -8,6 +8,12 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2078534352996334177, guid: 35c44cc049141ad419a896aa16022809,
+        type: 3}
+      propertyPath: radgollPrefab
+      value: 
+      objectReference: {fileID: 5134357582932819420, guid: f5c98eb2fd3791640983addac87acd71,
+        type: 3}
     - target: {fileID: 2409137296180503987, guid: 35c44cc049141ad419a896aa16022809,
         type: 3}
       propertyPath: health
