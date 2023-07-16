@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2752
     height: 1068.8
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 350}
   m_MaxSize: {x: 10000, y: 10000}
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 68
+  controlID: 31
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -639,9 +639,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 6.0700145, y: -2.0686264, z: 1.6043525}
+    m_Target: {x: 3.5463862, y: 1.2759354, z: 5.8281317}
     speed: 2
-    m_Value: {x: 6.0700145, y: -2.0686264, z: 1.6043525}
+    m_Value: {x: 3.5463862, y: 1.2759354, z: 5.8281317}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -687,9 +687,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.33969495, y: -0.09150095, z: 0.033240773, w: 0.93550867}
+    m_Target: {x: 0.12603515, y: 0.14822054, z: -0.019037578, w: 0.9807304}
     speed: 2
-    m_Value: {x: -0.33969495, y: 0.09150095, z: -0.033240773, w: -0.93550867}
+    m_Value: {x: 0.12603208, y: 0.14821693, z: -0.019037114, w: 0.9807066}
   m_Size:
     m_Target: 6.08742
     speed: 2
@@ -817,8 +817,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 362d0000
-      m_LastClickedID: 0
+      m_SelectedIDs: 9c680000
+      m_LastClickedID: 26780
       m_ExpandedIDs: 16fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -885,7 +885,7 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/UI
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 0
@@ -925,7 +925,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 180.19995}
+    scrollPos: {x: 0, y: 456.19995}
     m_SelectedIDs: 
     m_LastClickedID: 0
     m_ExpandedIDs: ffffffff000000004c7200004e72000050720000527200005472000056720000587200005a7200005c720000
@@ -1044,7 +1044,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 53180
+  m_LastSelectedObjectID: 26780
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1081,7 +1081,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 420
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

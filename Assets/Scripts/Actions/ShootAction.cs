@@ -94,6 +94,11 @@ public class ShootAction : BaseAction
         return "Shoot";
     }
 
+    public int GetMaxShootDistance()
+    {
+        return maxShootDistance;
+    }
+
     public override List<GridPosition> GetValidActionGridPositionList()
     {
         List<GridPosition> validGridPostitionList = new List<GridPosition>();
