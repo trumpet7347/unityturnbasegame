@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class UnitManager : MonoBehaviour
 {
-    private List<Unit> unitList;
-    private List<Unit> friendlyUnitLIst;
-    private List<Unit> enemyUnitList;
+    private List<Unit> _unitList;
+    private List<Unit> _friendlyUnitLIst;
+    private List<Unit> _enemyUnitList;
 
     public static UnitManager Instance { get; private set; }
 
@@ -21,9 +21,9 @@ public class UnitManager : MonoBehaviour
 
         Instance = this;
 
-        unitList = new List<Unit>();
-        friendlyUnitLIst = new List<Unit>();
-        enemyUnitList = new List<Unit>();
+        _unitList = new List<Unit>();
+        _friendlyUnitLIst = new List<Unit>();
+        _enemyUnitList = new List<Unit>();
     }
     private void Start()
     {
@@ -37,14 +37,14 @@ public class UnitManager : MonoBehaviour
 
         if (unit.IsEnemy())
         {
-            enemyUnitList.Remove(unit);
+            _enemyUnitList.Remove(unit);
         }
         else
         {
-            friendlyUnitLIst.Remove(unit);
+            _friendlyUnitLIst.Remove(unit);
         }
 
-        unitList.Remove(unit);
+        _unitList.Remove(unit);
     }
 
     private void Unit_OnAnyUnitSpawned(object sender, System.EventArgs e)
@@ -53,28 +53,28 @@ public class UnitManager : MonoBehaviour
 
         if (unit.IsEnemy())
         {
-            enemyUnitList.Add(unit);
+            _enemyUnitList.Add(unit);
         }
         else
         {
-            friendlyUnitLIst.Add(unit);
+            _friendlyUnitLIst.Add(unit);
         }
 
-        unitList.Add(unit);
+        _unitList.Add(unit);
     }
 
     public List<Unit> GetUnitList()
     {
-        return unitList;
+        return _unitList;
     }
 
     public List<Unit> GetFriendlyUnitList()
     {
-        return friendlyUnitLIst;
+        return _friendlyUnitLIst;
     }
 
     public List<Unit> GetEnemyUnitList()
     {
-        return enemyUnitList;
+        return _enemyUnitList;
     }
 }

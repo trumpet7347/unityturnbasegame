@@ -6,18 +6,18 @@ using UnityEngine.UI;
 
 public class ActionButtonUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI textMeshPro;
-    [SerializeField] private Button button;
-    [SerializeField] private GameObject selectedGameObject;
+    [SerializeField] private TextMeshProUGUI _textMeshPro;
+    [SerializeField] private Button _button;
+    [SerializeField] private GameObject _selectedGameObject;
 
-    private BaseAction baseAction;
+    private BaseAction _baseAction;
 
     public void SetBaseAction(BaseAction baseAction)
     {
-        this.baseAction = baseAction;
-        textMeshPro.text = baseAction.GetActionName().ToUpper();
+        _baseAction = baseAction;
+        _textMeshPro.text = baseAction.GetActionName().ToUpper();
 
-        button.onClick.AddListener(() =>
+        _button.onClick.AddListener(() =>
         {
             UnitActionSystem.Instance.SetSelectedAction(baseAction);
         });
@@ -26,7 +26,7 @@ public class ActionButtonUI : MonoBehaviour
     public void UpdateSelectedVisual()
     {
         var selectedBaseAction = UnitActionSystem.Instance.GetSelectedAction();
-        selectedGameObject.SetActive(baseAction == selectedBaseAction);
+        _selectedGameObject.SetActive(_baseAction == selectedBaseAction);
         
     }
 }

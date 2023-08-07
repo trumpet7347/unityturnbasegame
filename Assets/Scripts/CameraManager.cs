@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField] private GameObject actionCameraGameObject;
+    [SerializeField] private GameObject _actionCameraGameObject;
 
     private void Start()
     {
@@ -42,8 +42,8 @@ public class CameraManager : MonoBehaviour
                 Vector3 shoulderOffset = Quaternion.Euler(0, 90, 0) * shootDir * shoulderOffsetAmount;
 
                 Vector3 actionCameraPosition = shooterUnit.GetWorldPosition() + cameraCharacterHeight + shoulderOffset + (shootDir * -1);
-                actionCameraGameObject.transform.position = actionCameraPosition;
-                actionCameraGameObject.transform.LookAt(targetUnit.GetWorldPosition() + cameraCharacterHeight);
+                _actionCameraGameObject.transform.position = actionCameraPosition;
+                _actionCameraGameObject.transform.LookAt(targetUnit.GetWorldPosition() + cameraCharacterHeight);
                 ShowActionCamera();
                 break;
 
@@ -54,11 +54,11 @@ public class CameraManager : MonoBehaviour
 
     private void ShowActionCamera()
     {
-        actionCameraGameObject.SetActive(true);
+        _actionCameraGameObject.SetActive(true);
     }
 
     private void HideActionCamera()
     {
-        actionCameraGameObject?.SetActive(false);
+        _actionCameraGameObject?.SetActive(false);
     }
 }

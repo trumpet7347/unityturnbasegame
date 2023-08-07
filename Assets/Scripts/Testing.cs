@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
-    [SerializeField] private Unit unit;
+    [SerializeField] private Unit _unit;
 
     void Start()
     {

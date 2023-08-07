@@ -7,15 +7,15 @@ using UnityEngine.UI;
 
 public class UnitActionSystemUI : MonoBehaviour
 {
-    [SerializeField] private Transform actionButtonPrefab;
-    [SerializeField] private Transform actionButtonContainerTransform;
-    [SerializeField] private TextMeshProUGUI actionPointsText;
+    [SerializeField] private Transform _actionButtonPrefab;
+    [SerializeField] private Transform _actionButtonContainerTransform;
+    [SerializeField] private TextMeshProUGUI _actionPointsText;
 
-    private List<ActionButtonUI> actionButtonUIList;
+    private List<ActionButtonUI> _actionButtonUIList;
 
     private void Awake()
     {
-        actionButtonUIList = new List<ActionButtonUI>();
+        _actionButtonUIList = new List<ActionButtonUI>();
     }
 
     private void Start()
@@ -42,20 +42,20 @@ public class UnitActionSystemUI : MonoBehaviour
 
     private void CreateUnitActionButtons()
     {
-        foreach (Transform button in actionButtonContainerTransform)
+        foreach (Transform button in _actionButtonContainerTransform)
         {
             Destroy(button.gameObject);
         }
 
-        actionButtonUIList.Clear();
+        _actionButtonUIList.Clear();
         var selectedUnit = UnitActionSystem.Instance.GetSelectedUnit();
 
         foreach (var baseAction in selectedUnit.GetBaseActionArray())
         {
-            Transform actionButtonTransform = Instantiate(actionButtonPrefab, actionButtonContainerTransform);
+            Transform actionButtonTransform = Instantiate(_actionButtonPrefab, _actionButtonContainerTransform);
             var actionButtonUI = actionButtonTransform.GetComponent<ActionButtonUI>();
             actionButtonUI.SetBaseAction(baseAction);
-            actionButtonUIList.Add(actionButtonUI);
+            _actionButtonUIList.Add(actionButtonUI);
         }
     }
 
@@ -78,7 +78,7 @@ public class UnitActionSystemUI : MonoBehaviour
 
     private void UpdateSelectedVisual()
     {
-        foreach (var actionButtonUI in actionButtonUIList)
+        foreach (var actionButtonUI in _actionButtonUIList)
         {
             actionButtonUI.UpdateSelectedVisual();
         }
@@ -87,6 +87,6 @@ public class UnitActionSystemUI : MonoBehaviour
     private void UpdateActionPoints()
     {
         var actionPoints = UnitActionSystem.Instance.GetSelectedUnit().GetActionPoints();
-        actionPointsText.text = "Action Points : " + actionPoints;
+        _actionPointsText.text = "Action Points : " + actionPoints;
     }
 }

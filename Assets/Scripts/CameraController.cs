@@ -5,16 +5,18 @@ using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private CinemachineVirtualCamera _cinemachineVirtualCamera;
+
     private const float MIN_FOLLOW_Y_OFFSET = 2f;
     private const float MAX_FOLLOW_Y_OFFSET = 12f;
-    [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
-    private CinemachineTransposer cinemachineTransposer;
-    private Vector3 targetFollowOffset;
+
+    private CinemachineTransposer _cinemachineTransposer;
+    private Vector3 _targetFollowOffset;
 
     private void Start()
     {
-        cinemachineTransposer = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
-        targetFollowOffset = cinemachineTransposer.m_FollowOffset;
+        _cinemachineTransposer = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+        _targetFollowOffset = _cinemachineTransposer.m_FollowOffset;
     }
     void Update()
     {
@@ -78,15 +80,15 @@ public class CameraController : MonoBehaviour
         
         if (Input.mouseScrollDelta.y > 0)
         {
-            targetFollowOffset.y -= zoomAmount;
+            _targetFollowOffset.y -= zoomAmount;
         }
 
         if (Input.mouseScrollDelta.y < 0)
         {
-            targetFollowOffset.y += zoomAmount;
+            _targetFollowOffset.y += zoomAmount;
         }
 
-        targetFollowOffset.y = Mathf.Clamp(targetFollowOffset.y, MIN_FOLLOW_Y_OFFSET, MAX_FOLLOW_Y_OFFSET);
-        cinemachineTransposer.m_FollowOffset = Vector3.Lerp(cinemachineTransposer.m_FollowOffset, targetFollowOffset, Time.deltaTime * zoomSpeed);
+        _targetFollowOffset.y = Mathf.Clamp(_targetFollowOffset.y, MIN_FOLLOW_Y_OFFSET, MAX_FOLLOW_Y_OFFSET);
+        _cinemachineTransposer.m_FollowOffset = Vector3.Lerp(_cinemachineTransposer.m_FollowOffset, _targetFollowOffset, Time.deltaTime * zoomSpeed);
     }
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class UnitRagdoll : MonoBehaviour
 {
-    [SerializeField] private Transform ragdollRootBone;
+    [SerializeField] private Transform _ragdollRootBone;
 
     public void Setup (Transform originalRootBone)
     {
-        MatchAllChildTransforms(originalRootBone, ragdollRootBone);
+        MatchAllChildTransforms(originalRootBone, _ragdollRootBone);
 
-        ApplyExplosionToRagdoll(ragdollRootBone, 300f, transform.position, 10f);
+        ApplyExplosionToRagdoll(_ragdollRootBone, 300f, transform.position, 10f);
     }
 
     private void MatchAllChildTransforms(Transform root, Transform clone)
