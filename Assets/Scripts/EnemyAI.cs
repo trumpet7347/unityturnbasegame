@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    private float _timer;
+    private float timer;
 
     private enum State
     {
@@ -14,11 +14,11 @@ public class EnemyAI : MonoBehaviour
         Busy
     }
 
-    private State _state;
+    private State state;
 
     private void Awake()
     {
-        _state = State.WaitingForEnemyTurn;
+        state = State.WaitingForEnemyTurn;
     }
 
     private void Start()
@@ -30,8 +30,8 @@ public class EnemyAI : MonoBehaviour
     {
         if (!TurnSystem.Instance.IsPlayerTurn())
         {
-            _state = State.TakingTurn;
-            _timer = 2f;
+            state = State.TakingTurn;
+            timer = 2f;
         }
         
     }
@@ -40,18 +40,18 @@ public class EnemyAI : MonoBehaviour
     {
         if (TurnSystem.Instance.IsPlayerTurn()) return;
 
-        switch (_state)
+        switch (state)
         {
             case State.WaitingForEnemyTurn:
                 break;
             case State.TakingTurn:
-                _timer -= Time.deltaTime;
+                timer -= Time.deltaTime;
 
-                if (_timer <= 0)
+                if (timer <= 0)
                 {  
                     if (TryTakeEnamyAIAction(SetStateTakingTurn))
                     {
-                        _state = State.Busy;
+                        state = State.Busy;
                     }
                     else
                     {
@@ -68,8 +68,8 @@ public class EnemyAI : MonoBehaviour
 
     private void SetStateTakingTurn()
     {
-        _timer = .5f;
-        _state = State.TakingTurn;
+        timer = .5f;
+        state = State.TakingTurn;
     }
     private bool TryTakeEnamyAIAction(Action onEnemyAIActionComplete)
     {

@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class UnitSelectedVisual : MonoBehaviour
 {
-    [SerializeField] private Unit _unit;
+    [SerializeField] private Unit unit;
 
-    private MeshRenderer _meshRenderer;
+    private MeshRenderer meshRenderer;
 
     private void Awake()
     {
-        _meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     private void Start()
@@ -28,13 +28,13 @@ public class UnitSelectedVisual : MonoBehaviour
 
     private void UpdateVisual()
     {
-        if (UnitActionSystem.Instance.GetSelectedUnit() == _unit)
+        if (UnitActionSystem.Instance.GetSelectedUnit() == unit)
         {
-            _meshRenderer.enabled = true;
+            meshRenderer.enabled = true;
         }
         else
         {
-            _meshRenderer.enabled = false;
+            meshRenderer.enabled = false;
         }
     }
 

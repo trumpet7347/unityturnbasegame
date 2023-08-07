@@ -4,34 +4,34 @@ using UnityEngine;
 
 public class BulletProjectile : MonoBehaviour
 {
-    [SerializeField] private TrailRenderer _trailRenderer;
-    [SerializeField] private Transform _bulletHitVFXPrefab;
+    [SerializeField] private TrailRenderer trailRenderer;
+    [SerializeField] private Transform bulletHitVFXPrefab;
 
-    private Vector3 _targetPosition;
+    private Vector3 targetPosition;
 
     public void Setup(Vector3 targetPosition)
     {
-        this._targetPosition = targetPosition;
+        this.targetPosition = targetPosition;
     }
 
     private void Update()
     {
-        Vector3 moveDir = (_targetPosition - transform.position).normalized;
+        Vector3 moveDir = (targetPosition - transform.position).normalized;
 
-        float distanceBeforeMoving = Vector3.Distance(transform.position, _targetPosition);
+        float distanceBeforeMoving = Vector3.Distance(transform.position, targetPosition);
 
         float moveSpeed = 200f;
         transform.position += moveDir * moveSpeed * Time.deltaTime;
 
-        float distanceAfterMoving = Vector3.Distance(transform.position, _targetPosition);
+        float distanceAfterMoving = Vector3.Distance(transform.position, targetPosition);
 
         if (distanceBeforeMoving < distanceAfterMoving)
         {
-            transform.position = _targetPosition;
-            _trailRenderer.transform.parent = null;
+            transform.position = targetPosition;
+            trailRenderer.transform.parent = null;
             Destroy(gameObject);
 
-            Instantiate(_bulletHitVFXPrefab, _targetPosition, Quaternion.identity); 
+            Instantiate(bulletHitVFXPrefab, targetPosition, Quaternion.identity); 
         }
     }
 }

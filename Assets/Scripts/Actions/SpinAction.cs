@@ -7,7 +7,7 @@ public class SpinAction : BaseAction
 {
     public delegate void SpinCompleteDelegate();
 
-    private float _totalSpinAmount;
+    private float totalSpinAmount;
 
     void Update()
     {
@@ -16,9 +16,9 @@ public class SpinAction : BaseAction
         float spinAddAmount = 360f * Time.deltaTime;
         transform.eulerAngles += new Vector3(0, spinAddAmount, 0);
 
-        _totalSpinAmount += spinAddAmount;
+        totalSpinAmount += spinAddAmount;
 
-        if (_totalSpinAmount > 360f)
+        if (totalSpinAmount > 360f)
         {
             ActionComplete();
         }
@@ -26,7 +26,7 @@ public class SpinAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        _totalSpinAmount = 0f;
+        totalSpinAmount = 0f;
 
         ActionStart(onActionComplete);
     }

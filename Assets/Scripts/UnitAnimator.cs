@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class UnitAnimator : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
-    [SerializeField] private Transform _bulletProjectilePrefab;
-    [SerializeField] private Transform _shootPointTransform;
+    [SerializeField] private Animator animator;
+    [SerializeField] private Transform BulletProjectilePrefab;
+    [SerializeField] private Transform ShootPointTransform;
 
     private void Awake()
     {
@@ -25,26 +25,26 @@ public class UnitAnimator : MonoBehaviour
 
     private void ShootAction_OnShoot(object sender, ShootAction.OnShootEventArgs e)
     {
-        _animator.SetTrigger("Shoot");
+        animator.SetTrigger("Shoot");
 
-        var bulletProjectileTransform = Instantiate(_bulletProjectilePrefab, _shootPointTransform.position, Quaternion.identity);
+        var bulletProjectileTransform = Instantiate(BulletProjectilePrefab, ShootPointTransform.position, Quaternion.identity);
 
         var bulletProjectile = bulletProjectileTransform.GetComponent<BulletProjectile>();
 
         Vector3 targetUnitShootAtPostion = e.TargetUnit.GetWorldPosition();
 
-        targetUnitShootAtPostion.y = _shootPointTransform.position.y;
+        targetUnitShootAtPostion.y = ShootPointTransform.position.y;
 
         bulletProjectile.Setup(targetUnitShootAtPostion);
     }
 
     private void MoveAction_OnStopMoving(object sender, EventArgs e)
     {
-        _animator.SetBool("IsWalking", false);
+        animator.SetBool("IsWalking", false);
     }
 
     private void MoveAction_OnStartMoving(object sender, EventArgs e)
     {
-        _animator.SetBool("IsWalking", true);
+        animator.SetBool("IsWalking", true);
     }
 }

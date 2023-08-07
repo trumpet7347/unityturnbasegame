@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class GridObject
 {
-    private GridPosition _gridPosition;
-    private GridSystem<GridObject> _gridSystem;
+    private GridPosition gridPosition;
+    private GridSystem<GridObject> gridSystem;
 
     public List<Unit> unitList;
 
     public GridObject(GridSystem<GridObject> gridSystem, GridPosition gridPositon)
     {
-        _gridSystem = gridSystem;
-        _gridPosition = gridPositon;
+        this.gridSystem = gridSystem;
+        this.gridPosition = gridPositon;
 
         unitList = new List<Unit>();
     }
@@ -25,7 +25,7 @@ public class GridObject
         {
             unitString += unit + "\n";
         }
-        return _gridPosition.ToString() + "\n" + unitString;
+        return gridPosition.ToString() + "\n" + unitString;
     }
 
     public void AddUnit(Unit unit)

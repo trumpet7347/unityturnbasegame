@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class MoveAction : BaseAction
 {
-    [SerializeField] private int _maxMoveDistance = 4;
+    [SerializeField] private int maxMoveDistance = 4;
 
-    private Vector3 _targetPosition;
+    private Vector3 targetPosition;
 
     public event EventHandler OnStartMoving;
     public event EventHandler OnStopMoving;
@@ -15,17 +15,17 @@ public class MoveAction : BaseAction
     protected override void Awake()
     {
         base.Awake();
-        _targetPosition = transform.position;
+        targetPosition = transform.position;
     }
 
     private void Update()
     {
         if (!isActive) return;
 
-        Vector3 moveDirection = (_targetPosition - transform.position).normalized;
+        Vector3 moveDirection = (targetPosition - transform.position).normalized;
 
         var stoppingDistance = .1f;
-        if (Vector3.Distance(_targetPosition, transform.position) > stoppingDistance)
+        if (Vector3.Distance(targetPosition, transform.position) > stoppingDistance)
         {
             float moveSpeed = 4f;
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
@@ -42,7 +42,7 @@ public class MoveAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        this._targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
+        this.targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
 
         OnStartMoving?.Invoke(this, EventArgs.Empty);
 
@@ -54,9 +54,9 @@ public class MoveAction : BaseAction
         List<GridPosition> validGridPostitionList = new List<GridPosition>();
 
         var unitGridPosition = unit.GetGridPosition();
-        for (int x = -_maxMoveDistance; x <= _maxMoveDistance; x++)
+        for (int x = -maxMoveDistance; x <= maxMoveDistance; x++)
         {
-            for (int z = -_maxMoveDistance; z <= _maxMoveDistance; z++)
+            for (int z = -maxMoveDistance; z <= maxMoveDistance; z++)
             {
                 GridPosition offsetGridPotition = new GridPosition(x, z);
                 GridPosition testGridPosition = unitGridPosition + offsetGridPotition;

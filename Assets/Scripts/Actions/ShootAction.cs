@@ -12,11 +12,11 @@ public class ShootAction : BaseAction
         CoolOff
     }
 
-    private State _state;
-    private int _maxShootDistance = 7;
-    private float _stateTimer;
-    private Unit _targetUnit;
-    private bool _canShootBullet;
+    private State state;
+    private int maxShootDistance = 7;
+    private float stateTimer;
+    private Unit targetUnit;
+    private bool canShootBullet;
 
     public event EventHandler<OnShootEventArgs> OnShoot;
 
@@ -32,27 +32,27 @@ public class ShootAction : BaseAction
 
         
 
-        _stateTimer -= Time.deltaTime;
+        stateTimer -= Time.deltaTime;
 
-        switch (_state)
+        switch (state)
         {
             case State.Aiming:
-                Vector3 aimDirection = (_targetUnit.GetWorldPosition() - unit.GetWorldPosition()).normalized;
+                Vector3 aimDirection = (targetUnit.GetWorldPosition() - unit.GetWorldPosition()).normalized;
                 float rotateSpeed = 10f;
                 transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * rotateSpeed);
                 break;
             case State.Shooting:
-                if (_canShootBullet)
+                if (canShootBullet)
                 {
                     Shoot();
-                    _canShootBullet = false;
+                    canShootBullet = false;
                 }
                 break;
             case State.CoolOff:
                 break;
         }
 
-        if (_stateTimer <= 0f)
+        if (stateTimer <= 0f)
         {
             NextState();
         }
@@ -62,26 +62,26 @@ public class ShootAction : BaseAction
     {
         OnShoot?.Invoke(this, new OnShootEventArgs
         {
-            TargetUnit = _targetUnit,
+            TargetUnit = targetUnit,
             ShootingUnit = unit
         });
 
-        _targetUnit.Damage(40);
+        targetUnit.Damage(40);
     }
 
     private void NextState()
     {
-        switch (_state)
+        switch (state)
         {
             case State.Aiming:
-                _state = State.Shooting;
+                state = State.Shooting;
                 var shootingStateTime = 0.1f;
-                _stateTimer = shootingStateTime;
+                stateTimer = shootingStateTime;
                 break;
             case State.Shooting:
-                _state = State.CoolOff;
+                state = State.CoolOff;
                 var cooloffStateTime = 0.5f;
-                _stateTimer = cooloffStateTime;
+                stateTimer = cooloffStateTime;
                 break;
             case State.CoolOff:
                 ActionComplete();
@@ -96,7 +96,7 @@ public class ShootAction : BaseAction
 
     public int GetMaxShootDistance()
     {
-        return _maxShootDistance;
+        return maxShootDistance;
     }
 
     public override List<GridPosition> GetValidActionGridPositionList()
@@ -109,9 +109,9 @@ public class ShootAction : BaseAction
     {
         List<GridPosition> validGridPostitionList = new List<GridPosition>();
 
-        for (int x = -_maxShootDistance; x <= _maxShootDistance; x++)
+        for (int x = -maxShootDistance; x <= maxShootDistance; x++)
         {
-            for (int z = -_maxShootDistance; z <= _maxShootDistance; z++)
+            for (int z = -maxShootDistance; z <= maxShootDistance; z++)
             {
                 GridPosition offsetGridPotition = new GridPosition(x, z);
                 GridPosition testGridPosition = unitGridPosition + offsetGridPotition;
@@ -123,7 +123,7 @@ public class ShootAction : BaseAction
 
                 var testDistance = MathF.Abs(x) + MathF.Abs(z);
 
-                if (testDistance > _maxShootDistance)
+                if (testDistance > maxShootDistance)
                 {
                     continue;
                 }
@@ -149,19 +149,19 @@ public class ShootAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        _targetUnit = LevelGrid.Instance.GetUnitAtGridPostion(gridPosition);
-        _canShootBullet = true;
+        targetUnit = LevelGrid.Instance.GetUnitAtGridPostion(gridPosition);
+        canShootBullet = true;
 
-        _state = State.Aiming;
+        state = State.Aiming;
         var aimingStateTime = 1f;
-        _stateTimer = aimingStateTime;
+        stateTimer = aimingStateTime;
 
         ActionStart(onActionComplete);
     }
     
     public Unit GetTargetUnit()
     {
-        return _targetUnit;
+        return targetUnit;
     }
 
     public override EnemyAIAction GetEnemyAIAction(GridPosition gridPosition)

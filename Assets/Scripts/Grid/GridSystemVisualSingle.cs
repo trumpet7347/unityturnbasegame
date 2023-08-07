@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class GridSystemVisualSingle : MonoBehaviour
 {
-    [SerializeField] private MeshRenderer _meshRenderer;
+    [SerializeField] private MeshRenderer meshRenderer;
 
     public void Show(Material material)
     {
-        _meshRenderer.enabled = true;
-        _meshRenderer.material = material;
+        meshRenderer.enabled = true;
+        meshRenderer.material = material;
     }
 
     public void Hide()
     {
-        _meshRenderer.enabled = false;
+        meshRenderer.enabled = false;
     }
 }
